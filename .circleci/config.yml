@@ -31,7 +31,7 @@ jobs:
           command: pwd
       - run:
           name: list of files
-          command: pwd
+          command: ls -ltr
       - run:
           name: Restore Packages
           command: dotnet restore
