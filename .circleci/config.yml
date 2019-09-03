@@ -25,7 +25,6 @@ jobs:
       - run:
           name: dotnet info
           command: dotnet --info
-          working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
       - run:
           name: location
           command: pwd
@@ -35,6 +34,7 @@ jobs:
       - run:
           name: Restore Packages
           command: dotnet restore src/bc-readme-gen/ -v n
+          working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
       - run:
           name: Build Application
           command: dotnet build src/bc-readme-gen/ -v n
