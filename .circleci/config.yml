@@ -9,7 +9,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
-      working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -35,7 +34,6 @@ jobs:
       - run:
           name: Restore Packages
           command: dotnet restore src/bc-readme-gen/ -v n
-          working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
       - run:
           name: Build Application
           command: dotnet build src/bc-readme-gen/ -v n
