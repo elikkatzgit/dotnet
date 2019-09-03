@@ -28,4 +28,4 @@ jobs:
           working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
       - run:
           name: Build Application
-          command: dotnet build
+          command: pwd
