@@ -23,6 +23,9 @@ jobs:
     steps:
       - checkout
       - run:
+        name: Download WS UA
+        command: curl -LJO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss_agent.sh
+      - run:
           name: dotnet info
           command: dotnet --info
       - run:
