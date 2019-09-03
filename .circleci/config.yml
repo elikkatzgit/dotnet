@@ -34,7 +34,7 @@ jobs:
           command: ls -ltr
       - run:
           name: Restore Packages
-          command: dotnet restore
+          command: dotnet restore src/bc-readme-gen/ -v n
       - run:
           name: Build Application
-          command: dotnet build
+          command: dotnet build src/bc-readme-gen/ -v n
