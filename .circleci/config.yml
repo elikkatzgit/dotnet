@@ -6,7 +6,7 @@ orbs:
   whitesource-scan: whitesource/whitesource-scan@18.10.2
   
 jobs:
-  build:
+  run-tests:
     docker:
       # specify the version you desire here
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
