@@ -1,8 +1,7 @@
 version: 2
 
 orbs:
-  aws-ecr: circleci/aws-ecr@0.0.2
-  aws-ecs: circleci/aws-ecs@0.0.10
+  whitesource-scan: whitesource/whitesource-scan@18.10.2
   
 jobs:
   build:
@@ -10,18 +9,10 @@ jobs:
       # specify the version you desire here
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
     steps:
       - checkout
+      - whitesource-scan/scan:
+          api_key: a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
       - run:
           name: Download WS UA
           command: curl -LJO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss_agent.sh
@@ -40,3 +31,4 @@ jobs:
       - run:
           name: Build Application
           command: dotnet build src/bc-readme-gen/ -v n
+
