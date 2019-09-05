@@ -1,7 +1,7 @@
 version: 2
 
 orbs:
-  whitesource-scan: whitesource/whitesource-scan@18.10.2
+  aws-ecs: circleci/aws-ecs@0.0.10
   
 jobs:
   build:
