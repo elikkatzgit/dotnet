@@ -16,11 +16,11 @@ jobs:
     - run:
         name: Build Application
         command: dotnet build
-        working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
+
     - run:
         name: Run Tests
         command: dotnet test --no-build --logger "trx;LogFileName=TestResults.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
+
 
 workflows:
   build-and-deploy:
