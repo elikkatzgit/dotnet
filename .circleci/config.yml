@@ -1,7 +1,9 @@
-version: 2
+version: 2.1
 
 orbs:
+  aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.10
+  whitesource-scan: whitesource/whitesource-scan@18.10.2
   
 jobs:
   build:
@@ -11,8 +13,6 @@ jobs:
 
     steps:
       - checkout
-      - whitesource-scan/scan:
-          api_key: a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
       - run:
           name: Download WS UA
           command: curl -LJO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss_agent.sh
@@ -32,3 +32,14 @@ jobs:
           name: Build Application
           command: dotnet build src/bc-readme-gen/ -v n
 
+workflows:
+  build-and-deploy:
+    jobs:
+    - run-tests
+    - whitesource-scan/scan:
+        api_key: a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
+    - aws-ecr/build_and_push_image:
+        requires:
+        - run-tests
+        - whitesource-scan/scan
+        
