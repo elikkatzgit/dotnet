@@ -9,10 +9,10 @@ jobs:
 
     steps:
     - checkout
-    
     - run:
       name: current direcotry
       command: pwd
+      
     - run:
       name: files here
       command: ls -ltr
