@@ -1,0 +1,31 @@
+version: 2.1
+orbs:
+  whitesource-scan: whitesource/whitesource-scan@18.10.2
+
+jobs:
+  run-tests:
+    docker:
+    - image: "mcr.microsoft.com/dotnet/core/sdk:2.2"
+    steps:
+    - checkout
+    - run:
+        name: Restore Packages
+        command: dotnet restore
+    - run:
+        name: Build Application
+        command: dotnet build
+        working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
+    - run:
+        name: Run Tests
+        command: dotnet test --no-build --logger "trx;LogFileName=TestResults.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        working_directory: REPLACE_THIS_WITH_A_WORKING_DIRECTORY
+
+workflows:
+  build-and-deploy:
+    jobs:
+    - run-tests
+    - whitesource-scan/scan:
+        api_key: a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
+        directory: .
+     #   config_file_path: .whitesource
+   
