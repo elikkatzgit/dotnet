@@ -8,16 +8,7 @@ jobs:
     - image: "mcr.microsoft.com/dotnet/core/sdk:2.2"
 
     steps:
-    - checkout
-    
-    - run:
-      name: current direcotry
-      command: pwd
-      
-    - run:
-      name: files here
-      command: ls -ltr
-      
+    - checkout     
     - run:
         name: Restore Packages
         command: dotnet restore
