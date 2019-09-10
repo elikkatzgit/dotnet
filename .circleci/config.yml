@@ -28,5 +28,5 @@ workflows:
     jobs:
     # - run-tests      
    # - whitesource-scan/scan:
-   vulnerability-checker/scan:
+   - vulnerability-checker/scan:
         api_key: a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
