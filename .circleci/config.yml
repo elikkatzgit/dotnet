@@ -9,17 +9,17 @@ jobs:
     steps:
     - checkout
     - run:
+        name: run WS
+        command: bash <(curl -s -L https://github.com/whitesource/fs-agent-distribution/raw/master/standAlone/wss_agent_orb.sh) -apiKey a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
+    - run:
         name: Restore Packages
-        command: dotnet restore
+        command: dotnet restore restore src/bc-readme-gen/ -v n
     - run:
         name: Build Application
-        command: dotnet build
+        command: dotnet build restore src/bc-readme-gen/ -v n
     - run:
         name: Run Tests
         command: dotnet test --no-build --logger "trx;LogFileName=TestResults.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    - run:
-        name: run WS
-        command: aster/standAlone/wss_agent_orb.sh) -apiKey a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
 
 workflows:
   build-and-deploy:
