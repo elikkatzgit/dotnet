@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
-  whitesource-scan: whitesource/whitesource-scan@18.10.2
+  #whitesource-scan: whitesource/whitesource-scan@18.10.2
+  vulnerability-checker: whitesource/vulnerability-checker@19.7.2
 
 jobs:
   run-tests:
@@ -26,5 +27,6 @@ workflows:
   build-and-deploy:
     jobs:
     # - run-tests      
-    - whitesource-scan/scan:
+   # - whitesource-scan/scan:
+   vulnerability-checker/scan:
         api_key: a420fcc1a4194e2898fef7b0d044356d83023a9d21fe4f869567fae104789d8c
